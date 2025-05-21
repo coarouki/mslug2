@@ -14,35 +14,44 @@
             <div id="game"></div>
         </div>
         <script>
-            EJS_player = "#game";
-            EJS_core = "mame2003";
-            EJS_gameName = "메탈슬러그2";
-            EJS_color = "#0064ff";
-            EJS_startOnLoaded = true;
-            EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-            EJS_gameUrl = "mslug2.zip";
-            
-            EJS_light = true; // 성능 최적화 모드
-            EJS_Buttons = {
-                playPause: false,
-                restart: false,
-                mute: false,
-                settings: false,
-                fullscreen: false,
-                saveState: false,
-                loadState: false,
-                screenRecord: false,
-                gamepad: false,
-                cheat: false,
-                volume: false,
-                saveSavFiles: false,
-                loadSavFiles: false,
-                quickSave: false,
-                quickLoad: false,
-                screenshot: false,
-                cacheManager: false,
-                exitEmulation: false
-            };
+            const params = new URLSearchParams(window.location.search);
+            const gameFile = params.get("game");
+
+            if (gameFile){ 
+                const romPath = `./roms/${gameFile}.zip`;  // zip 확장자는 내부에서 붙임
+                EJS_player = "#game";
+                EJS_core = "mame2003";
+                EJS_gameName = "메탈슬러그2";
+                EJS_color = "#0064ff";
+                EJS_startOnLoaded = true;
+                EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+                EJS_gameUrl = romPath;
+                
+                EJS_light = true; // 성능 최적화 모드
+                EJS_Buttons = {
+                    playPause: false,
+                    restart: false,
+                    mute: false,
+                    settings: false,
+                    fullscreen: false,
+                    saveState: false,
+                    loadState: false,
+                    screenRecord: false,
+                    gamepad: false,
+                    cheat: false,
+                    volume: false,
+                    saveSavFiles: false,
+                    loadSavFiles: false,
+                    quickSave: false,
+                    quickLoad: false,
+                    screenshot: false,
+                    cacheManager: false,
+                    exitEmulation: false
+                };
+            }
+            else {
+                alert("게임 이름이 제공되지 않았습니다.");
+            }
 	    </script>
 	    <script src="https://www.emulatorjs.com/loader.js"></script>
     </body>
